@@ -9,6 +9,7 @@ import {
 
 const router = express.Router();
 
+// creating the endpoints
 router.get('/', getAllDocuments);
 router.get('/:documentID', getDocument);
 router.post('/', createDocument);

@@ -4,6 +4,7 @@ import { firestore } from "../admin/admin.service";
 const collectionName = "users";
 const collectionPath = `/data/${collectionName}/items`;
 
+//fetch one item from the db 
 const getDocument = async (req: Request, res: Response) => {
   const documentID = req.params.documentID;
   const documentPath = `${collectionPath}/${documentID}`;
@@ -14,16 +15,18 @@ const getDocument = async (req: Request, res: Response) => {
   console.log(`get document snapshot : ${documentID}`);
   const docSnapshot = await docReference.get();
 
+  //check if the actual db exists
   if (!docSnapshot.exists) {
     const message = `${collectionName} document does not exist: ${req.params.documentID}`;
     console.log(message);
+    // if not return 404 as a response
     return res.status(404).json({ message });
   }
 
   try {
     console.log(`get document data : ${documentID}`);
     const documentData = { id: docSnapshot.id, ...docSnapshot.data() };
-
+    // if the db exists and it is not empty, return the data 
     return res.status(200).json({
       success: true,
       payload: documentData,
@@ -31,13 +34,15 @@ const getDocument = async (req: Request, res: Response) => {
   } catch (ex) {
     const message = `get ${collectionName} document [${documentPath}] exception : ${ex.message}`;
     console.log();
-
+    // otherwise return 500 error code because the server does not respond
     return res.status(500).json({
       success: false,
       message,
     });
   }
 };
+
+// Fetch all items
 const getAllDocuments = async (req: Request, res: Response) => {
   const documentPath = `${collectionPath}/`;
 
@@ -71,6 +76,7 @@ const getAllDocuments = async (req: Request, res: Response) => {
   }
 };
 
+// create one item with a specific id which must be included in the body of the request
 const createDocument = async (req: Request, res: Response) => {
   console.log(`create ${collectionName} document`, req.body);
 
@@ -96,6 +102,7 @@ const createDocument = async (req: Request, res: Response) => {
   return res.status(201).json({ success: true, message: successMessage });
 };
 
+// update one item with a specific id which must be included in the params of the request
 const updateDocument = async (req: Request, res: Response) => {
   const documentID = req.params.documentID;
   const documentPath = `${collectionPath}/${documentID}`;
@@ -127,6 +134,8 @@ const updateDocument = async (req: Request, res: Response) => {
   console.log(successMessage);
   return res.status(200).json({ success: true, message: successMessage });
 };
+
+// delete one item with a specific id which must be included in the params of the request
 const deleteAttachment= async (req: Request, res: Response) =>{
   const documentID = req.params.documentID;
 
