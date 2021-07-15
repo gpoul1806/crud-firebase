@@ -21,3 +21,4 @@ Update Item: method put, endpoint:          https://europe-west1-contacts-a-b3e8
 
 Delete Item: method delete, endpoint:       https://europe-west1-contacts-a-b3e89.cloudfunctions.net/api/users/:id
 
+where id is 123, it is a test 
