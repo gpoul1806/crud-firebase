@@ -1,4 +1,4 @@
-For the Back end of the contacts application i used Node.js with Express.js and Firestore (Firebase) as a database.
+For the Back end i used Node.js with Express.js and Firestore (Firebase) as a database.
 
 Unfortunately, you will not be able to run this app locally because you need a private key (json -> functions/src/config/firebase-adminsdk.json) 
 in order to run the app. I deleted because it is something like the credentials for my app in firebase!
@@ -14,3 +14,5 @@ Finally, change the .firebaserc :
 }
 
 Run the functions locally => npm run serve
+
+Deploy your functions to Firebase Functions => npm run deploy
