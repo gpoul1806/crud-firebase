@@ -5,20 +5,12 @@ in order to run the app. I deleted because it is something like the credentials 
 
 If you want, you can create an account and insert your own key (project settings -> Service accounts-> genereate new private key)
 
+Finally, change the .firebaserc :
 
+{
+  "projects": {
+    "default": "your-project's-name"
+  }
+}
 
-
-Althought, even if you can not run the app locally, i will give you the apis:
-
-
-Get ALL: method get, endpoint:              https://europe-west1-contacts-a-b3e89.cloudfunctions.net/api/users
-
-Get One Item : method get, endpoint:        https://europe-west1-contacts-a-b3e89.cloudfunctions.net/api/users/:id
-
-Post Item: method post, endpoint:           https://europe-west1-contacts-a-b3e89.cloudfunctions.net/api/users
-
-Update Item: method put, endpoint:          https://europe-west1-contacts-a-b3e89.cloudfunctions.net/api/users/:id
-
-Delete Item: method delete, endpoint:       https://europe-west1-contacts-a-b3e89.cloudfunctions.net/api/users/:id
-
-where id is 123, it is a test 
+Run the functions locally => npm run serve
